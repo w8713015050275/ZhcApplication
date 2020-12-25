@@ -1,0 +1,18 @@
+def versions = [:]
+versions.constraint_layout = "2.0.1"
+
+def deps = [:]
+
+def arouter = [:]
+arouter.api = "com.alibaba:arouter-api:1.4.1"
+arouter.compiler = "com.alibaba:arouter-compiler:1.2.1"
+deps.arouter = arouter
+
+deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+
+def fun1() {
+
+}
+//导出变量和方法
+ext.deps = deps
+ext.fun1 = this.&fun1
