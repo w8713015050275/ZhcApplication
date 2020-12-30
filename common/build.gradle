@@ -51,7 +51,28 @@ dependencies {
 
     kapt deps.arouter.compiler
 
-
+    api 'io.socket:socket.io-client:1.0.0'
+    api deps.retrofit.runtime
+    api deps.retrofit.gson
     api deps.constraint_layout
     api deps.arouter.api
+
+    api deps.coroutines.core
+    api deps.coroutines.android
+    api deps.coroutines.rx2
+
+    api deps.rxjava2
+    api deps.rx_android
+
+    api deps.lifecycle.runtime
+    api deps.lifecycle.livedata
+    api deps.lifecycle.extensions
+    api deps.lifecycle.java8
+    api deps.lifecycle.viewmodel_ktx
+    api deps.lifecycle.compiler
+
+    api deps.multidex
+    api deps.dagger.runtime
+
+    kapt deps.dagger.compiler
 }

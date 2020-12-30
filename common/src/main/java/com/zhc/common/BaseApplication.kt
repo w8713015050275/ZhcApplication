@@ -2,12 +2,20 @@ package com.zhc.common
 
 import android.app.Application
 import android.content.ComponentCallbacks
-import android.content.SharedPreferences
+import android.content.Context
 import android.content.res.Configuration
+import androidx.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
+import com.zhc.common.di.component.DaggerRepoComponent
+import com.zhc.common.di.component.RepoComponent
+import com.zhc.common.di.module.ApiModule
+import com.zhc.common.di.module.NetModule
+import com.zhc.common.di.module.RepoModule
 import kotlin.properties.Delegates
 
 open class BaseApplication:Application() {
+
+    lateinit var repoComponent: RepoComponent
 
     companion object {
         var instance: BaseApplication by Delegates.notNull()
@@ -20,10 +28,25 @@ open class BaseApplication:Application() {
         super.registerActivityLifecycleCallbacks(callback)
     }
 
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+
+    }
+
     override fun onCreate() {
         super.onCreate()
         instance = this
         ARouter.init(this)
+        initRepoComponent()
+    }
+
+    private fun initRepoComponent() {
+        repoComponent = DaggerRepoComponent.builder()
+            .apiModule(ApiModule())
+            .netModule(NetModule())
+            .repoModule(RepoModule())
+            .build()
     }
 
     override fun onLowMemory() {
