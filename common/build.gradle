@@ -74,5 +74,7 @@ dependencies {
     api deps.multidex
     api deps.dagger.runtime
 
+    api deps.adapterHelper
+
     kapt deps.dagger.compiler
 }

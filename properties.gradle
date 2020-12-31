@@ -9,7 +9,7 @@ versions.lifecycle = "2.2.0"
 versions.lifecycle_viewmodel = "2.2.0"
 versions.multidex = "2.0.0"
 versions.dagger = "2.16"
-
+versions.adapterHelper = "3.0.6"
 
 def deps = [:]
 
@@ -54,10 +54,12 @@ deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.c
 deps.rxjava2 = "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
 deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
 deps.multidex = "androidx.multidex:multidex:$versions.multidex"
+deps.adapterHelper = "com.github.CymChad:BaseRecyclerViewAdapterHelper:$versions.adapterHelper"
 
 def fun1() {
 
 }
+
 //导出变量和方法
 ext.deps = deps
 ext.fun1 = this.&fun1
