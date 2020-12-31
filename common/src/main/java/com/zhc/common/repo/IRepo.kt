@@ -9,9 +9,9 @@ import com.zhc.common.api.Api3Response
  */
 interface IRepo {
 
-    suspend fun getData1(): Api1Response
+    suspend fun getData1(): Api1Response?
 
-    suspend fun getData2(): Api2Response
+    suspend fun getData2(): Api2Response?
 
-    suspend fun getData3(): Api3Response
+    suspend fun getData3(): Api3Response?
 }

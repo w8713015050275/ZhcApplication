@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.zhc.common.vm.BaseViewModel
 
 abstract class BaseActivity<VM: BaseViewModel>: AppCompatActivity() {
-    private lateinit var viewModel: VM
+    lateinit var viewModel: VM
 
     /**
      * 布局ID

@@ -1,22 +1,18 @@
-package com.zhc.bizone
+package com.zhc.bizone.ui.activity
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.zhc.bizone.R
 import com.zhc.bizone.vm.BizOneActivityVm
 import com.zhc.common.BaseActivity
 import com.zhc.common.Router
-import com.zhc.common.di.component.DaggerRepoComponent
-import com.zhc.common.di.component.RepoComponent
-import com.zhc.common.di.module.ApiModule
-import com.zhc.common.di.module.NetModule
-import com.zhc.common.di.module.RepoModule
 import com.zhc.common.net.Repo
 import com.zhc.common.socket.ConnectBean
 import com.zhc.common.socket.SocketManager
+import com.zhc.common.vm.DataState
 import kotlinx.android.synthetic.main.biz_one_activiy.*
 
 private const val TAG = "zhc BizOneActivity"
@@ -35,6 +31,22 @@ class BizOneActivity: BaseActivity<BizOneActivityVm>() {
                 Log.d(TAG, "onCreate: connect error")
             }
         }
+        observeVm()
+    }
+
+    private fun observeVm() {
+        viewModel.loadData1.observe(this, Observer {
+            when (it.state) {
+                DataState.SUCCESS -> {
+                    it.data?.let {
+
+                    }
+                }
+                else -> {
+
+                }
+            }
+        })
     }
 
     override fun generateViewModel(): BizOneActivityVm {
