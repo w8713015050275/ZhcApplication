@@ -11,7 +11,10 @@ import retrofit2.http.*
 interface Api {
 
     @GET(Path.URL_1)
-    suspend fun getData(@Header("header1") header1: Int, @Query("query1") query1: Int): Api1Response
+    suspend fun getData(@Query("page") query1: Int): TestResponse
+
+//    @GET(Path.URL_1)
+//    suspend fun getData(@Header("header1") header1: Int, @Query("query1") query1: Int): Api1Response
 
     @POST(Path.URL_2)
     suspend fun getData2(@Body request: Api1Request): Api2Response

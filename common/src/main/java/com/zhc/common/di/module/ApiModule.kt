@@ -13,7 +13,7 @@ class ApiModule {
     @Provides
     @AppScope
     fun provideApi(gson: Gson, okHttpClient: OkHttpClient): Api {
-        return RetrofitFactory.create(gson, okHttpClient, "baseUrl")
+        return RetrofitFactory.create(gson, okHttpClient, "https://reqres.in")
             .create(Api::class.java)
     }
 }

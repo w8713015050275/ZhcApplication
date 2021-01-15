@@ -1,9 +1,6 @@
 package com.zhc.common.repo
 
-import com.zhc.common.api.Api
-import com.zhc.common.api.Api1Response
-import com.zhc.common.api.Api2Response
-import com.zhc.common.api.Api3Response
+import com.zhc.common.api.*
 import com.zhc.common.exception.ExceptionTransformer
 
 /**
@@ -14,10 +11,10 @@ class Repo(val api: Api): IRepo {
     /**
      * 网络请求过程中发生的异常会全部被拦截
      */
-    override suspend fun getData1(): Api1Response? {
+    override suspend fun getData1(): TestResponse? {
         return try {
             //发生异常时，转换为内部错误码
-            return api.getData(header1 = 1, query1 = 2)
+            return api.getData(query1 = 2)
         } catch (e: KotlinNullPointerException) {
             null
         } catch (e: Exception) {

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SwitchButtonStyleMD" parent="SwitchButtonMD">
+        <!--        <item name="android:paddingLeft">10dp</item>-->
+        <!--        <item name="android:paddingRight">10dp</item>-->
+        <!--        <item name="android:paddingTop">4dp</item>-->
+        <!--        <item name="android:paddingBottom">4dp</item>-->
+        <item name="kswThumbDrawable">@drawable/switch_button_tumbnail</item>
+        <item name="kswBackColor">#FFE2DA</item>
+        <item name="kswThumbRangeRatio">1.923</item>
+        <item name="kswThumbMarginLeft">0dp</item>
+        <item name="kswThumbMarginTop">-4dp</item>
+        <item name="kswThumbMarginRight">0dp</item>
+        <item name="kswThumbMarginBottom">-4dp</item>
+
+    </style>
+
+    <style name="SwitchButtonStyleMDOff" parent="SwitchButtonMD">
+        <item name="kswThumbDrawable">@drawable/switch_button_tumbnail_off</item>
+        <item name="kswBackColor">#DDE1E8</item>
+        <item name="kswThumbRangeRatio">1.923</item>
+        <item name="kswThumbMarginLeft">0dp</item>
+        <item name="kswThumbMarginTop">-4dp</item>
+        <item name="kswThumbMarginRight">0dp</item>
+        <item name="kswThumbMarginBottom">-4dp</item>
+
+    </style>
+
+    <style name="SwitchButtonStyle">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
+<!--    <style name="SwitchButtonMD" ns1:ignore="ResourceName">-->
+<!--        <item name="kswThumbDrawable">@drawable/ksw_md_thumb</item>-->
+<!--        <item name="kswBackColor">@color/ksw_md_back_color</item>-->
+<!--        <item name="kswThumbRangeRatio">1.45</item>-->
+<!--        <item name="kswThumbMarginLeft">-16dp</item>-->
+<!--        <item name="kswThumbMarginTop">-14dp</item>-->
+<!--        <item name="kswThumbMarginRight">-16dp</item>-->
+<!--        <item name="kswThumbMarginBottom">-14dp</item>-->
+<!--        <item name="kswThumbWidth">@dimen/ksw_md_thumb_ripple_size</item>-->
+<!--        <item name="kswThumbHeight">@dimen/ksw_md_thumb_ripple_size</item>-->
+<!--    </style>-->
+</resources>

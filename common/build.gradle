@@ -75,6 +75,8 @@ dependencies {
     api deps.dagger.runtime
 
     api deps.adapterHelper
+    api deps.switchButton
+    api deps.utilcode
 
     kapt deps.dagger.compiler
 }
