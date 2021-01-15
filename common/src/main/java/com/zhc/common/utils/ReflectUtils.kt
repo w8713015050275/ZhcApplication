@@ -2,14 +2,6 @@ package com.zhc.common.utils
 
 import java.lang.reflect.ParameterizedType
 
-/**
- *
- * @ClassName: ReflectUtils
- * @Description:
- * @Author: Laughing
- * @CreateDate: 2018/12/24 13:30
- * @Version: 2.7.0
- */
 object ReflectUtils {
     /**
      * 获取泛型的类

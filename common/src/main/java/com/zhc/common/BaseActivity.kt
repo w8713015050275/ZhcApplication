@@ -2,6 +2,10 @@ package com.zhc.common
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.blankj.utilcode.util.ToastUtils
+import com.zhc.common.utils.ReflectUtils
 import com.zhc.common.vm.BaseViewModel
 
 abstract class BaseActivity<VM: BaseViewModel>: AppCompatActivity() {
@@ -18,10 +22,20 @@ abstract class BaseActivity<VM: BaseViewModel>: AppCompatActivity() {
     abstract fun onViewCreated(savedInstanceState: Bundle?)
 
     /**
+     * 是否显示数据加载动画
+     */
+    open fun enableLoading(): Boolean {
+        return true
+    }
+
+    /**
      * 创建ViewModule
      */
-    abstract fun generateViewModel(): VM
-
+    open fun generateViewModel(): VM {
+        val clz: Class<VM> = ReflectUtils.getTypeClass(javaClass, BaseViewModel::class.java) as Class<VM>
+        //绑定activity的生命周期
+        return ViewModelProviders.of(this).get(clz)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +45,35 @@ abstract class BaseActivity<VM: BaseViewModel>: AppCompatActivity() {
         }
 
         viewModel = generateViewModel()
+
+        //监听数据loading
+        if (enableLoading()) {
+            viewModel.loading.observe(this, Observer {
+                when (it) {
+                    true -> ToastUtils.showShort("begin loading")
+                    false -> ToastUtils.showShort("end loading")
+                }
+            })
+        }
+
+        viewModel.successToast.observe(this, Observer {
+            ToastUtils.showShort("successToast")
+        })
+
+        viewModel.errorToast.observe(this, Observer {
+            ToastUtils.showShort("errorToast")
+        })
+
+        viewModel.networkError.observe(this, Observer {
+//            it?.message?.let { message ->
+//                ToastUtils.showError(message)
+//            }
+//            hideLoading()
+        })
+
+        viewModel.reLogin.observe(this, Observer {
+//            launchActivity(Router.Pages.ACTIVITY_LOGIN_NEW)
+        })
 
         onViewCreated(savedInstanceState)
     }

@@ -56,11 +56,11 @@ open class BaseViewModel: ViewModel() {
         success: (T) -> Unit,
         error: (AccessThrowable) -> Unit = { _errorToast.value = it.message },
         complete: () -> Unit = {},
-        showSpinner: Boolean = true,
+        showLoading: Boolean = true,
         escapeHideSpinner: Boolean = false) {
         if (isActive) viewModelScope.launch {
             try {
-                if (showSpinner) {
+                if (showLoading) {
                     _loading.value = true
                 }
                 //接口200返回成功，不一定有数据
@@ -89,7 +89,7 @@ open class BaseViewModel: ViewModel() {
             } catch (err: Exception) {
                 error(AccessThrowable(ERROR.UNKNOWN, err.message ?: ""))
             } finally {
-                if (showSpinner && !escapeHideSpinner) {
+                if (showLoading && !escapeHideSpinner) {
                     _loading.value = false
                 }
                 complete.invoke()
