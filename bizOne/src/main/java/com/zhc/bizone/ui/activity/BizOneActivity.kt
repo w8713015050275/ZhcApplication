@@ -57,10 +57,15 @@ class BizOneActivity: BaseActivity<BizOneActivityVm>() {
             setHasFixedSize(true)
         }
 
+        //itemView的点击事件
         bizOneAdapter?.setOnItemClickListener { adapter, view, position ->
-
+            Log.d(TAG, "initView: zhc=== ${view.javaClass.canonicalName}")
         }
-
+        //注册子View点击事件
+        bizOneAdapter?.addChildClickViewIds(R.id.bizOneAvator, R.id.bizOneUserName)
+        bizOneAdapter?.setOnItemChildClickListener { adapter, view, position ->
+            Log.d(TAG, "initView: zhc=== ${view.javaClass.canonicalName}")
+        }
     }
 
     private fun observeVm() {

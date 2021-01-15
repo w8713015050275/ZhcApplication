@@ -15,7 +15,7 @@ android {
     buildToolsVersion "30.0.1"
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -79,4 +79,10 @@ dependencies {
     api deps.utilcode
 
     kapt deps.dagger.compiler
+
+    api deps.glide.runtime
+    kapt deps.glide.compiler
+    api deps.glide.glide_okhttp3_integration
+    api deps.glide.glide_annotations
+    api deps.glide.transformations
 }
