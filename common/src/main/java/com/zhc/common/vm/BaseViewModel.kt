@@ -1,5 +1,6 @@
 package com.zhc.common.vm
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,10 +9,10 @@ import com.zhc.common.exception.AccessThrowable
 import com.zhc.common.exception.ERROR
 import com.zhc.common.exception.ExceptionTransformer
 import com.zhc.common.executors.Executor.dispatchers
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.*
 
+private const val TAG = "BaseViewModel zhc==="
 open class BaseViewModel: ViewModel() {
 
     //数据加载中
@@ -39,7 +40,24 @@ open class BaseViewModel: ViewModel() {
     val networkError: LiveData<AccessThrowable>
         get() = _networkError
 
+    private var disposable: Disposable? = null
+    private val viewModelJob = SupervisorJob()
+    private val viewModelScope = CoroutineScope(
+        dispatchers.main
+                + viewModelJob
+                + CoroutineExceptionHandler { _, exception ->
+            Log.e(TAG, "caught original $exception")
+        })
 
+    override fun onCleared() {
+        viewModelScope.coroutineContext.cancelChildren()
+        disposable?.dispose()
+        super.onCleared()
+    }
+
+    /**
+     * 使用协程处理异步任务
+     */
     /**
      * load产生的异常如果是AccessThrowable都会被result方法拦截掉
      */
