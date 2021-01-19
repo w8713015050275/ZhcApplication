@@ -6,11 +6,13 @@ import android.content.Context
 import android.content.res.Configuration
 import androidx.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.AppUtils
 import com.zhc.common.di.component.DaggerRepoComponent
 import com.zhc.common.di.component.RepoComponent
 import com.zhc.common.di.module.ApiModule
 import com.zhc.common.di.module.NetModule
 import com.zhc.common.di.module.RepoModule
+import com.zhc.common.utils.SPUtils
 import kotlin.properties.Delegates
 
 open class BaseApplication:Application() {
@@ -37,6 +39,7 @@ open class BaseApplication:Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        SPUtils.init(this, AppUtils.getAppPackageName())
         ARouter.init(this)
         initRepoComponent()
     }
