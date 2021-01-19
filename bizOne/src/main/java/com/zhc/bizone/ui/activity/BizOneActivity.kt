@@ -41,7 +41,8 @@ class BizOneActivity: BaseActivity<BizOneActivityVm>() {
 //                Log.d(TAG, "onCreate: connect error")
 //            }
 
-            viewModel.loadData1()
+//            viewModel.loadData1()
+            viewModel.loadData2()
         }
 
         initView()

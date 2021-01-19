@@ -6,6 +6,7 @@ package com.zhc.common.okHttp;
 //import com.zhangmen.braintrain.common.utils.HttpDnsHelper;
 //import com.zhangmen.track.event.net.RpcInfoInterceptor;
 
+import com.zhc.common.BuildConfig;
 import com.zhc.common.executors.Executor;
 
 import java.io.File;
@@ -36,6 +37,7 @@ import okhttp3.Cache;
 import okhttp3.ConnectionPool;
 import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 //import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
@@ -107,21 +109,21 @@ public class SSLUtil {
 //                    .dns(HttpDnsHelper.getInstance())
                     .hostnameVerifier((hostname, session) -> true)
                     .sslSocketFactory(sslContext.getSocketFactory(), trustManager)
-//                    .addInterceptor(new HeaderInterceptor())
-//                    .addInterceptor(new RpcInfoInterceptor())
+                    .addInterceptor(new HeaderInterceptor())
 //                    .cache(new Cache(new File(BaseApplication.appSDPath, "http_cache"),
 //                            20 * 1024 * 1024))
                     .connectTimeout(20, TimeUnit.SECONDS)
                     .readTimeout(20, TimeUnit.SECONDS)
                     .writeTimeout(30, TimeUnit.SECONDS)
                     .connectionPool(new ConnectionPool(5, 1, TimeUnit.MINUTES))
-                    .dispatcher(new Dispatcher(Executor.INSTANCE.getIoExecutor()));
+                    .dispatcher(new Dispatcher(Executor.INSTANCE.getIoExecutor())); //统一线程池
 
-//            if (BuildConfig.DEBUG) {
-//                HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLogger());
-//                interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//                builder.addNetworkInterceptor(interceptor);
-//            }
+            //调试请求
+            if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLogger());
+                interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+                builder.addNetworkInterceptor(interceptor);
+            }
 
             okHttpClient = builder.build();
             return okHttpClient;

@@ -85,4 +85,5 @@ dependencies {
     api deps.glide.glide_okhttp3_integration
     api deps.glide.glide_annotations
     api deps.glide.transformations
+    api deps.okhttp_logging_interceptor
 }
