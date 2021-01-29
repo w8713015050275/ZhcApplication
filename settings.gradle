@@ -1,3 +1,4 @@
+include ':loginModule'
 include ':bizonetestapp'
 include ':bizOne'
 include ':mainPage'

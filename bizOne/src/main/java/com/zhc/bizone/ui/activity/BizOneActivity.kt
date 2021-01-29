@@ -22,7 +22,7 @@ import com.zhc.common.vm.DataState
 import kotlinx.android.synthetic.main.biz_one_activiy.*
 
 private const val TAG = "zhc BizOneActivity"
-@Route(path = Router.Pages.BIZ_ONE_BIZ_ONE_ACTIVITY)
+@Route(path = Router.Pages.BizOneModule.BIZ_ONE_BIZ_ONE_ACTIVITY)
 class BizOneActivity: BaseActivity<BizOneActivityVm>() {
 
 

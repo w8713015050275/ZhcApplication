@@ -11,7 +11,7 @@ class BizOneTestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_biz_one_test)
         helloBizOneTestActivity.setOnClickListener {
-            launchActivity(Router.Pages.BIZ_ONE_BIZ_ONE_ACTIVITY)
+            launchActivity(Router.Pages.BizOneModule.BIZ_ONE_BIZ_ONE_ACTIVITY)
         }
     }
 }
