@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.zhc.bizone.R
+import com.zhc.bizone.ui.activity.dialog.BizOneDialog
+import com.zhc.bizone.ui.activity.dialog.BizOneNetAccessDialog
 import com.zhc.bizone.ui.adapter.BizOneActivityAdapter
 import com.zhc.bizone.vm.BizOneActivityVm
 import com.zhc.common.BaseActivity
@@ -43,6 +45,42 @@ class BizOneActivity: BaseActivity<BizOneActivityVm>() {
 
 //            viewModel.loadData1()
             viewModel.loadData2()
+        }
+
+        showNoNetAccessDialog.setOnClickListener {
+            supportFragmentManager.let {
+                BizOneDialog.newInstance().apply {
+                    registerListener {
+                        confirmed {
+                            ToastUtils.showLong("confirm")
+                            dismiss()
+                        }
+                        canceled {
+                            ToastUtils.showLong("cancel")
+                            dismiss()
+                        }
+                    }
+                    show(it)
+                }
+            }
+        }
+
+        showNetAccessDialog.setOnClickListener {
+            supportFragmentManager.let {
+                BizOneNetAccessDialog.newInstance().apply {
+                    registerListener {
+                        confirmed {
+                            ToastUtils.showLong("confirm")
+                            dismiss()
+                        }
+                        canceled {
+                            ToastUtils.showLong("cancel")
+                            dismiss()
+                        }
+                    }
+                    show(it)
+                }
+            }
         }
 
         initView()

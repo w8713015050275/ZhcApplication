@@ -12,6 +12,7 @@ object Router {
             const val BIZ_ONE_BIZ_ONE_ACTIVITY = "/bizOne/activity/BizOneActivity"
         }
 
+        //不同module使用不同的group，不然找不到
         object LoginModule {
             const val ACTIVITY_LOGIN_NEW = "/loginModule/activity/LoginActivity"
         }

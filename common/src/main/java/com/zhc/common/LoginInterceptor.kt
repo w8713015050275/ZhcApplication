@@ -15,6 +15,7 @@ import com.zhc.common.utils.UserInfoProvider
 
 /**
  * 必须拦截器所在的目录下面有依赖arouter-compiler，否则没法识别@Interceptor
+ * 卸载app清除缓存
  *
  */
 private const val TAG = "LoginInterceptor zhc==="
