@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
+apply plugin: 'packer'
+
 
 android {
     compileSdkVersion 30
@@ -15,6 +17,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        flavorDimensions "default"
+
     }
 
     buildTypes {
@@ -30,6 +34,64 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    signingConfigs {
+        debug {
+            storeFile file("../ZMLearn_Debugkeystore.jks")
+            v2SigningEnabled true
+        }
+        release {
+            storeFile file("../zhcReleaseKeyStore.jks")
+            storePassword "zhc123"
+            keyAlias "zhcReleaseKeyStoreAlias"
+            keyPassword "zhc123"
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            zipAlignEnabled true
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    productFlavors {
+        uat {
+            buildConfigField "String", "WX_APP_H5_HOST", '"http://ai-wx-h5.uat.zmops.cc/"'
+            manifestPlaceholders = [ app_ai_name           : "@string/app_name_uat"]
+        }
+
+        qa {
+            buildConfigField "String", "WX_APP_H5_HOST", '"http://ai-wx-h5-test.zmaxis.com/"'
+            manifestPlaceholders = [ app_ai_name           : "@string/app_name_qa"]
+        }
+
+        online {
+            buildConfigField "String", "WX_APP_H5_HOST", '"https://ai-wx-h5.zmtalent.com/"'
+            manifestPlaceholders = [ app_ai_name           : "@string/app_name_online"]
+        }
+    }
+}
+
+
+packer {
+    //注意：channelList / channelMap / channelFile 不能同时使用，根据实际情况选择一种即可，三个属性
+    //同时存在时优先级为： channelList > channelMap > channelFile，另外，这三个属性会被命令行参数 -Pchannels 覆盖。
+    archiveNameFormat = 'zhc_bizOneTestApp_v${versionName}_${channel}_${buildTime}_${buildType}'
+    channelFile = new File(project.rootDir, "market.txt")
 }
 
 dependencies {
@@ -49,4 +111,6 @@ dependencies {
     //业务module使用runtimeOnly，避免编译时依赖，可优化为aar依赖
     runtimeOnly project(":mainPage")
     runtimeOnly project(":bizOne")
+    implementation 'com.mcxiaoke.packer-ng:helper:2.0.1'
+
 }

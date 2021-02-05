@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_uat">Zhc Application_uat</string>
+    <string name="app_name_qa">Zhc Application_qa</string>
+    <string name="app_name_online">Zhc Application_online</string>
+</resources>

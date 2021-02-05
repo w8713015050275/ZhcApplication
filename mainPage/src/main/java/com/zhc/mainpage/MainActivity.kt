@@ -15,7 +15,7 @@ class MainActivity: BaseActivity<BaseViewModel>() {
 
     override fun onViewCreated(savedInstanceState: Bundle?) {
         jumpToBizOne.setOnClickListener {
-            launchActivity(Router.Pages.BIZ_ONE_BIZ_ONE_ACTIVITY)
+            launchActivity(Router.Pages.BizOneModule.BIZ_ONE_BIZ_ONE_ACTIVITY)
         }
     }
 }
