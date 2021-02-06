@@ -15,6 +15,7 @@ import com.zhc.bizone.ui.adapter.BizOneActivityAdapter
 import com.zhc.bizone.vm.BizOneActivityVm
 import com.zhc.common.BaseActivity
 import com.zhc.common.Router
+import com.zhc.common.aop.TraceDelay
 import com.zhc.common.api.Data
 import com.zhc.common.api.TestResponse
 import com.zhc.common.net.Repo
@@ -35,6 +36,7 @@ class BizOneActivity: BaseActivity<BizOneActivityVm>() {
         return R.layout.biz_one_activiy
     }
 
+    @TraceDelay()
     override fun onViewCreated(savedInstanceState: Bundle?) {
         bizOneButton.setOnClickListener {
 //            SocketManager.getInstance().connect(

@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id "kotlin-kapt"
 }
+apply plugin: 'android-aspectjx'
 
 kapt {
     arguments {
@@ -86,4 +87,6 @@ dependencies {
     api deps.glide.glide_annotations
     api deps.glide.transformations
     api deps.okhttp_logging_interceptor
+
+    api 'org.aspectj:aspectjrt:1.9.5'
 }

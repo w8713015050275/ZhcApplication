@@ -3,7 +3,7 @@ plugins {
     id 'kotlin-android'
 }
 apply plugin: 'packer'
-
+apply plugin: 'android-aspectjx'
 
 android {
     compileSdkVersion 30
@@ -92,6 +92,14 @@ packer {
     //同时存在时优先级为： channelList > channelMap > channelFile，另外，这三个属性会被命令行参数 -Pchannels 覆盖。
     archiveNameFormat = 'zhc_bizOneTestApp_v${versionName}_${channel}_${buildTime}_${buildType}'
     channelFile = new File(project.rootDir, "market.txt")
+}
+
+//主项目里指定哪些文件需要扫描编织
+aspectjx {
+    //指定只对含有关键字'universal-image-loader', 'AspectJX-Demo/library'的库进行织入扫描，忽略其他库，提升编译效率
+    include 'com.zhc'
+//    excludeJarFilter '.jar'
+//    ajcArgs '-Xlint:warning'
 }
 
 dependencies {
