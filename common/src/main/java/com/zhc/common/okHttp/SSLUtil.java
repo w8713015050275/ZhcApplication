@@ -1,11 +1,5 @@
 package com.zhc.common.okHttp;
 
-//import com.zhangmen.braintrain.base.executors.Executor;
-//import com.zhangmen.braintrain.base.res.BuildConfig;
-//import com.zhangmen.braintrain.common.base.BaseApplication;
-//import com.zhangmen.braintrain.common.utils.HttpDnsHelper;
-//import com.zhangmen.track.event.net.RpcInfoInterceptor;
-
 import com.zhc.common.BuildConfig;
 import com.zhc.common.executors.Executor;
 

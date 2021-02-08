@@ -53,7 +53,7 @@ object ConnectBeanBuild {
             clientVersion,
             "agora",
             "unmute",
-            "zhangmen",
+            "zhc",
             "Android_kp:1.0" + "; screen:" + screenSize + "英寸;pixel:" + resolution,
             "",
             buType,

@@ -8,14 +8,6 @@ import com.zhc.common.extensions.isFalse
 import com.zhc.common.extensions.isTrue
 import com.zhc.common.extensions.toJsonObject
 import com.zhc.common.utils.ReflectUtils
-//import com.zhangmen.aiclassroom.Constants
-//import com.zhangmen.aiclassroom.Constants.AiClassSignal.GIVE_ANSWER
-//import com.zhangmen.aiclassroom.extension.*
-//import com.zhangmen.aiclassroom.utils.Logger
-//import com.zhangmen.aiclassroom.utils.ReflectUtils
-//import com.zhangmen.aiclassroom.utils.fulllink.FullLinkConst
-//import com.zhangmen.aiclassroom.utils.fulllink.FullLinkHelper
-//import com.zhangmen.media.base.Dog
 import io.socket.client.Ack
 import io.socket.emitter.Emitter
 import org.json.JSONObject

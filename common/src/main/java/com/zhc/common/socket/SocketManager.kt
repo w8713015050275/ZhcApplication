@@ -2,9 +2,6 @@ package com.zhc.common.socket
 
 import android.text.TextUtils
 import android.util.Log
-//import com.zhangmen.aiclassroom.manager.AiClassManager
-//import com.zhangmen.aiclassroom.utils.Logger
-//import com.zhangmen.media.ZMMediaEngine
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
 import okhttp3.OkHttpClient

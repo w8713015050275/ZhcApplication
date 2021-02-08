@@ -104,7 +104,6 @@ public final class Logger {
 
         logFileName = sdCardPath + File.separator + "log.txt";
         openLogFile();
-//        com.zhangmen.braintrain.base.utils.Logger.TAG = tag;
         return settings;
     }
 

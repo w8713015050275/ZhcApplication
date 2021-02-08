@@ -5,8 +5,6 @@ import android.os.Looper
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.zhc.common.executors.Executor.dispatchers
-//import com.zhangmen.braintrain.base.executors.Executor.dispatchers
-//import com.zhangmen.braintrain.base.utils.Logger
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers

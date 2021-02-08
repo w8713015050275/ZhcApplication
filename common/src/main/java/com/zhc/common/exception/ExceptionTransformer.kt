@@ -3,7 +3,6 @@ package com.zhc.common.exception
 import android.database.sqlite.SQLiteException
 import com.google.gson.JsonIOException
 import com.google.gson.JsonParseException
-//import com.zhangmen.braintrain.base.utils.Logger
 import org.json.JSONException
 import retrofit2.HttpException
 import java.net.ConnectException
