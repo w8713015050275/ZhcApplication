@@ -41,8 +41,9 @@ android {
         abortOnError false
     }
     signingConfigs {
+        //随便生成的
         debug {
-            storeFile file("../ZMLearn_Debugkeystore.jks")
+            storeFile file("../zhcReleaseKeyStore.jks")
             v2SigningEnabled true
         }
         release {
