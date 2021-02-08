@@ -10,6 +10,7 @@ object Router {
     object Pages{
         object BizOneModule {
             const val BIZ_ONE_BIZ_ONE_ACTIVITY = "/bizOne/activity/BizOneActivity"
+            const val BIZ_ONE_WEB_VIEW_ACTIVITY = "/bizOne/activity/WebViewActivity"
         }
 
         //不同module使用不同的group，不然找不到

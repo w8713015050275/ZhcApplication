@@ -18,6 +18,7 @@ import com.zhc.common.Router
 import com.zhc.common.aop.TraceDelay
 import com.zhc.common.api.Data
 import com.zhc.common.api.TestResponse
+import com.zhc.common.launchActivity
 import com.zhc.common.net.Repo
 import com.zhc.common.socket.ConnectBean
 import com.zhc.common.socket.SocketManager
@@ -83,6 +84,10 @@ class BizOneActivity: BaseActivity<BizOneActivityVm>() {
                     show(it)
                 }
             }
+        }
+
+        showWebViewActivity.setOnClickListener {
+            launchActivity(Router.Pages.BizOneModule.BIZ_ONE_WEB_VIEW_ACTIVITY)
         }
 
         initView()

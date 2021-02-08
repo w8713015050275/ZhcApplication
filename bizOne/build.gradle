@@ -55,5 +55,6 @@ dependencies {
 
     implementation project(":common")
     implementation project(":loginModule")
+    implementation project(":jsBridgelibrary")
 
 }

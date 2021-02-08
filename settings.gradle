@@ -4,4 +4,5 @@ include ':bizOne'
 include ':mainPage'
 include ':common'
 include ':app'
+include ':jsBridgelibrary'
 rootProject.name = "Zhc Application"
