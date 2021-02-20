@@ -1,3 +1,4 @@
+include ':faceDetection'
 include ':loginModule'
 include ':bizonetestapp'
 include ':bizOne'

@@ -15,6 +15,8 @@ versions.utilcode = "1.30.4"
 versions.glide = "4.9.0"
 versions.okhttp_logging_interceptor = "3.11.0"
 versions.jsbridge = "1.0.2"
+versions.camerax_version = "1.0.0-beta11"
+versions.camerax_ext = "1.0.0-alpha18"
 
 def deps = [:]
 
@@ -73,6 +75,11 @@ deps.utilcode = "com.blankj:utilcode:$versions.utilcode"
 deps.okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${versions.okhttp_logging_interceptor}"
 deps.jsbridge = "com.github.lzyzsd:jsbridge:${versions.jsbridge}"
 
+deps.camerax_core = "androidx.camera:camera-core:$versions.camerax_version"
+deps.camerax_camera2 = "androidx.camera:camera-camera2:$versions.camerax_version"
+deps.camerax_lifecycle = "androidx.camera:camera-lifecycle:$versions.camerax_version"
+deps.camerax_view = "androidx.camera:camera-view:$versions.camerax_ext"
+deps.camerax_extensions = "androidx.camera:camera-extensions:$versions.camerax_ext"
 
 def fun1() {
 

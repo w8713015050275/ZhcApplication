@@ -90,6 +90,10 @@ class BizOneActivity: BaseActivity<BizOneActivityVm>() {
             launchActivity(Router.Pages.BizOneModule.BIZ_ONE_WEB_VIEW_ACTIVITY)
         }
 
+        faceDetectionTest.setOnClickListener {
+            launchActivity(Router.Pages.BizOneModule.BIZ_ONE_FACE_DETECTION_ACTIVITY)
+        }
+
         initView()
         observeVm()
     }

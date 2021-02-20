@@ -3,12 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.zhc.bizone">
 
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application>
         <activity android:name=".ui.activity.BizOneActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity android:name=".ui.activity.WebViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.activity.FaceDetectionActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
     </application>

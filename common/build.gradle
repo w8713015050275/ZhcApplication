@@ -91,4 +91,11 @@ dependencies {
     implementation project(":jsBridgelibrary")
 
     api 'org.aspectj:aspectjrt:1.9.5'
+
+    api deps.camerax_core
+    api deps.camerax_camera2
+    api deps.camerax_lifecycle
+    api deps.camerax_view
+    api 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+
 }
