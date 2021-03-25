@@ -11,6 +11,7 @@ object Router {
         object BizOneModule {
             const val BIZ_ONE_BIZ_ONE_ACTIVITY = "/bizOne/activity/BizOneActivity"
             const val BIZ_ONE_WEB_VIEW_ACTIVITY = "/bizOne/activity/WebViewActivity"
+            const val BIZ_ONE_PDF_WEB_VIEW_ACTIVITY = "/bizOne/activity/PdfWebViewActivity"
             const val BIZ_ONE_FACE_DETECTION_ACTIVITY = "/bizOne/activity/FaceDetectionActivity"
         }
 

@@ -28,6 +28,9 @@ typealias LumaListener = (luma: Double) -> Unit
 @Route(path = Router.Pages.BizOneModule.BIZ_ONE_FACE_DETECTION_ACTIVITY)
 class FaceDetectionActivity: BaseActivity<BaseViewModel>() {
 
+    private var cameraClosed: Boolean = false
+    private var cameraProvider: ProcessCameraProvider? = null
+
     companion object {
         private const val TAG = "CameraXBasic"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
@@ -40,7 +43,6 @@ class FaceDetectionActivity: BaseActivity<BaseViewModel>() {
     }
 
     override fun onViewCreated(savedInstanceState: Bundle?) {
-        // Request camera permissions
         if (allPermissionsGranted()) {
             startCamera()
         } else {
@@ -48,6 +50,15 @@ class FaceDetectionActivity: BaseActivity<BaseViewModel>() {
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
         Detection.init(assets)
+
+        cameraController.setOnClickListener {
+            if (cameraClosed) {
+                startCamera()
+            } else {
+                cameraProvider?.unbindAll()
+                cameraClosed = true
+            }
+        }
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
@@ -60,7 +71,7 @@ class FaceDetectionActivity: BaseActivity<BaseViewModel>() {
 
         cameraProviderFuture.addListener(Runnable {
             // Used to bind the lifecycle of cameras to the lifecycle owner
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+            cameraProvider = cameraProviderFuture.get()
 
             // Preview
             val preview = Preview.Builder()
@@ -72,6 +83,7 @@ class FaceDetectionActivity: BaseActivity<BaseViewModel>() {
             val detectAnalyzer = DetectAnalyzer {
                 runInMain {
 //                    faceRect.setImageBitmap(it)
+                    Log.d(TAG, "startCamera: isTooNear: $it")
                     if (it) {
                         ToastUtils.showLong("too near")
                     }
@@ -84,20 +96,17 @@ class FaceDetectionActivity: BaseActivity<BaseViewModel>() {
                             Log.d(TAG, "zhc==== Average luminosity: $luma")
                         })
                     }
-            // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
 
             try {
-                // Unbind use cases before rebinding
-                cameraProvider.unbindAll()
-
-                // Bind use cases to camera
-                cameraProvider.bindToLifecycle(
+                cameraProvider?.unbindAll()
+                cameraProvider?.bindToLifecycle(
                     this, cameraSelector, preview, gainAnalyzer(detectAnalyzer)
 //                    this, cameraSelector, preview, imageAnalyzer
                 )
-
+                cameraClosed = false
             } catch (exc: Exception) {
+                cameraClosed = true
                 Log.e(TAG, "Use case binding failed", exc)
             }
 

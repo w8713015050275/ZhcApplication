@@ -4,6 +4,7 @@ import android.graphics.*
 import android.util.Log
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
+import com.luozw.detection.Box
 import com.luozw.detection.Detection
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -35,7 +36,7 @@ object FaceDetectManager {
         //        int rotate = readPictureDegree(image);
         val lastBitmap = adjustPhotoRotation(bitmapsrc, 270)
         val start = System.currentTimeMillis()
-        val result =
+        val result: Array<Box> =
             Detection.detect(lastBitmap, threshold, nms_threshold)
         val end = System.currentTimeMillis()
         val time = end - start
@@ -51,20 +52,20 @@ object FaceDetectManager {
         val size = image.width / 800.toFloat()
         boxPaint.strokeWidth = 4 * size
         boxPaint.textSize = 40 * size
-        for (box in result) {
-            boxPaint.color = box.color
-            boxPaint.style = Paint.Style.FILL
-            if (MODEL_TYPE == 0) {
-                canvas.drawText(box.vocLabel, box.x0, box.y0, boxPaint)
-            } else if (MODEL_TYPE == 1) {
-                canvas.drawText(box.faceLabel, box.x0, box.y0, boxPaint)
-            }
-            val decimalFormat = DecimalFormat("0.00")
-            val score = decimalFormat.format(box.score.toDouble())
-            canvas.drawText(score, box.x0, box.y0 + 40 * size, boxPaint)
-            boxPaint.style = Paint.Style.STROKE
-            canvas.drawRect(box.rect, boxPaint)
-        }
+//        for (box in result) {
+//            boxPaint.color = box.color
+//            boxPaint.style = Paint.Style.FILL
+//            if (MODEL_TYPE == 0) {
+//                canvas.drawText(box.vocLabel, box.x0, box.y0, boxPaint)
+//            } else if (MODEL_TYPE == 1) {
+//                canvas.drawText(box.faceLabel, box.x0, box.y0, boxPaint)
+//            }
+//            val decimalFormat = DecimalFormat("0.00")
+//            val score = decimalFormat.format(box.score.toDouble())
+//            canvas.drawText(score, box.x0, box.y0 + 40 * size, boxPaint)
+//            boxPaint.style = Paint.Style.STROKE
+//            canvas.drawRect(box.rect, boxPaint)
+//        }
         var max_score = 0f
         var people_id = 0
         val area = 0
@@ -103,8 +104,10 @@ object FaceDetectManager {
             box_width = (result[people_id].x1 - result[people_id].x0).toInt()
             pic_width = bitmapsrc.height
             pic_height = bitmapsrc.width
+            Log.d("TAG", "detectOnModel: zhc boxWidth: $box_width, boxHeight: $box_height, picWidth: $pic_width, picHeight: $pic_height")
             width_ratio = box_width.toFloat() / pic_width //图片宽度取480
             height_ratio = box_height.toFloat() / pic_height //图片高度取640
+            Log.d("TAG", "detectOnModel: zhc widthRatio: $width_ratio, heightRatio: $height_ratio")
             //            area=box_height*box_width;
             //Toast.makeText(MainActivity.this, "ratio：" + box_ratio , Toast.LENGTH_SHORT).show();
 //            Toast.makeText(MainActivity.this, "area：" + area , Toast.LENGTH_SHORT).show();
@@ -114,8 +117,9 @@ object FaceDetectManager {
                 "widthratio:$width_ratio-heightratio:$height_ratio"
             )
             //Log.e("height_ratio" ,"height_ratio");
-            max_ratio = Math.max(width_ratio, height_ratio).toDouble()
-            if (max_ratio > width_ratio_max) {
+//            max_ratio = Math.max(width_ratio, height_ratio).toDouble()
+
+            if (width_ratio > 0.5) {
                 distance_near_flag = true
 //                Toast.makeText(this "you are too close", Toast.LENGTH_SHORT).show()
                 Log.d("TAG", "detectOnModel: zhc==== you are too close")

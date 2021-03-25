@@ -97,5 +97,8 @@ dependencies {
     api deps.camerax_lifecycle
     api deps.camerax_view
     api 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+    api "com.ms-square:expandableTextView:0.1.4"
+    api 'com.devzld:expandlayout:1.0.0'
+
 
 }

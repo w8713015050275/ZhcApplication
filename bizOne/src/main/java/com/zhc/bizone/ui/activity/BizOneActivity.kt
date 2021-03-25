@@ -50,6 +50,15 @@ class BizOneActivity: BaseActivity<BizOneActivityVm>() {
             viewModel.loadData2()
         }
 
+        expand_text_view.setText("hahahahhahahahahhahahhahahahahhahahahahhahahhahahahahhahahahahhahahhahahahahhahahahahhahahhahahahahhahahahahhahahhahahahahhahahahahhahahha")
+        expand_text_view.setOnExpandStateChangeListener { textView, isExpanded ->
+            if (isExpanded) {
+                expandTextViewHint.setText("收起")
+            } else {
+                expandTextViewHint.setText("展開")
+            }
+        }
+
         showNoNetAccessDialog.setOnClickListener {
             supportFragmentManager.let {
                 BizOneDialog.newInstance().apply {
@@ -87,7 +96,8 @@ class BizOneActivity: BaseActivity<BizOneActivityVm>() {
         }
 
         showWebViewActivity.setOnClickListener {
-            launchActivity(Router.Pages.BizOneModule.BIZ_ONE_WEB_VIEW_ACTIVITY)
+//            launchActivity(Router.Pages.BizOneModule.BIZ_ONE_WEB_VIEW_ACTIVITY)
+            launchActivity(Router.Pages.BizOneModule.BIZ_ONE_PDF_WEB_VIEW_ACTIVITY)
         }
 
         faceDetectionTest.setOnClickListener {

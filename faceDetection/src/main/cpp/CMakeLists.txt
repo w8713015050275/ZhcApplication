@@ -9,7 +9,8 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 set(ALL_SOURCES ${CMAKE_SOURCE_DIR}/source/ncnn.cpp ${CMAKE_SOURCE_DIR}/source/retinaface.cpp ${CMAKE_SOURCE_DIR}/source/yolov5.cpp ${CMAKE_SOURCE_DIR}/source/utils.cpp)
 #FILE(GLOB ALL_SOURCES "${CMAKE_SOURCE_DIR}/source/*.cpp")
 
-set(ncnn_lib ${CMAKE_SOURCE_DIR}/../jniLibs/arm64-v8a/libncnn.a)
+#set(ncnn_lib ${CMAKE_SOURCE_DIR}/../jniLibs/arm64-v8a/libncnn.a)
+set(ncnn_lib ${CMAKE_SOURCE_DIR}/../jniLibs/armeabi-v7a/libncnn.a)
 add_library(ncnn_lib STATIC IMPORTED)
 set_target_properties(ncnn_lib PROPERTIES IMPORTED_LOCATION ${ncnn_lib})
 
